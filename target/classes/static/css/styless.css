@@ -1,0 +1,165 @@
+.row { 
+	display: flex; 
+	font-size: 14px; 
+	text-align: center; 
+	color: black;
+	width: 100%;
+	height: 100%;
+}
+
+.node { 
+	width: 36px; 
+	height: 32px; 
+	margin: 1px; 
+	border: 1px solid black;
+	text-align: center;
+	text-align: center;
+    vertical-align: middle;
+    line-height: 22px;
+    font-weight: bold;
+	}
+body {
+    padding-bottom: 250px;
+    height:100%;
+}
+.destination {
+    background-color: #7FFFD4;
+} 
+.final{
+	background-color: #7FFFD4;
+}
+
+.start {
+	background-color: blue;
+}
+
+.path{
+	background-color: yellow;
+  	animation-name: example;
+  	animation-duration: 2s;
+}
+@keyframes example {
+  from {background-color: white;}
+  to {background-color: yellow;}
+}
+
+.wall{
+	background-color: black;
+	color: white;
+	font-weight: normal;
+}
+.alert-danger{
+	color: red;
+}
+
+.nav {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: relative;
+}
+
+.nav > .nav-header {
+  display: inline;
+}
+
+.nav > .nav-header > .nav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
+}
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,.nav  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+
+.myButton {
+	box-shadow: 0px 0px 0px 2px #041238;
+	background-color:#ffffff;
+	border-radius:1px;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+	font-family:Courier New;
+	font-size:15px;
+	font-style:italic;
+	padding:3px 14px;
+	text-decoration:none;
+	margin-bottom: 30px;
+	text-shadow:0px 1px 0px #000000;
+}
+.myButton:hover {
+	background-color:#d9d7de;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
