@@ -16,7 +16,7 @@ The application is hosted on Heroku and can be accessed here:
 **[https://algo-pathfinder-5b2f76b3eadd.herokuapp.com/](https://algo-pathfinder-5b2f76b3eadd.herokuapp.com/)**
 
 Feel free to explore and interact with its functionality!
-Simply select a square and click 'visualize' to demonstrate how the alogorithm works to find the desired square. 
+Simply select a square and click 'visualize' to demonstrate how the algorithm works to find the desired square. 
 
 ### **Important Note**
 This app is hosted on Heroku’s **free tier**, which comes with some limitations:
