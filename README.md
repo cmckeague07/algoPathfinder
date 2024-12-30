@@ -40,7 +40,7 @@ If you encounter any issues accessing the application, these limitations might b
 - **Frontend**: HTML, CSS
 - **Backend**: Java, Spring Boot
 - **Hosting**: Heroku
-- 
+
 ------------------------------------------------------------------------------
 Application Screenshots
 ------------------------------------------------------------------------------
