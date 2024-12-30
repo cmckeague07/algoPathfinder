@@ -31,8 +31,6 @@ This app is hosted on Heroku’s **free tier**, which comes with some limitation
 3. **No Guaranteed Uptime**:
    - Free-tier apps are not guaranteed 24/7 availability. If the monthly dyno hour limit is reached, the app will stop until the next billing cycle (1st of the month).
 
-4. **Custom Domains**:
-   - Custom domains are not supported on the free plan, so the default Heroku URL is used.
 
 If you encounter any issues accessing the application, these limitations might be the cause.
 
@@ -42,10 +40,17 @@ If you encounter any issues accessing the application, these limitations might b
 - **Frontend**: HTML, CSS
 - **Backend**: Java, Spring Boot
 - **Hosting**: Heroku
+- 
+------------------------------------------------------------------------------
+Application Screenshots
+------------------------------------------------------------------------------
+
 ![image](https://github.com/user-attachments/assets/00c68287-b5ed-42d3-8632-3a3b23168949)
 ![image](https://github.com/user-attachments/assets/96f6e00e-7da4-4101-8565-6db9d67b21dc)
 ![image](https://github.com/user-attachments/assets/2e20dee6-a451-4cfb-820c-5e3c38697244)
 ![image](https://github.com/user-attachments/assets/854fbe9b-fb32-4904-b0b3-741e616fa792)
+
+
 
 
 
