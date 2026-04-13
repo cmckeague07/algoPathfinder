@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.1</version>
+		<version>4.0.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>algoPathfinder</groupId>
@@ -15,8 +15,10 @@
 	<description>Learn Algorithms!</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>21</java.version>
+		<tomcat.version>11.0.21</tomcat.version>
 	</properties>
+
 
 	<dependencies>
 		<dependency>
@@ -27,24 +29,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
+			<groupId>tools.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>3.1.1</version>
 		</dependency>
 
 		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -54,7 +48,7 @@
 			<plugin>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-maven-plugin</artifactId>
-			<version>2.4.1</version>
+			<version>4.0.5</version>
 			<configuration>
 				<mainClass>algoPathfinder.AlgoPathfinderApplication</mainClass>
 			</configuration>
@@ -63,8 +57,8 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <configuration>
-                <source>11</source>
-                <target>11</target>
+                <source>21</source>
+                <target>21</target>
             </configuration>
         </plugin>
 		</plugins>

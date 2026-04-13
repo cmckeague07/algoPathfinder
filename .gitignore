@@ -1,0 +1,29 @@
+# Maven build output
+target/
+
+# Logs
+*.log
+application.log
+
+# Generated reports and artefacts
+dependency-report.txt
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+*.env
+
+# Spring Boot
+spring-pidhow
+
+#sh files
+*.sh
