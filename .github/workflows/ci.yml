@@ -22,6 +22,24 @@ jobs:
         with:
           java-version: '21'
           distribution: 'microsoft'
+          cache: 'maven'
 
-      - name: Build and run tests
-        run: mvn clean verify
+      - name: Build application
+        run: mvn package -DskipTests
+
+      - name: Start Spring Boot app
+        run: mvn spring-boot:start -DskipTests
+
+      - name: Run tests
+        run: mvn verify
+
+      - name: Stop Spring Boot app
+        run: mvn spring-boot:stop
+        if: always()
+
+      - name: Upload Serenity Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: serenity-report
+          path: target/site/serenity/
+        if: always()
