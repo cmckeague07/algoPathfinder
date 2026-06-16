@@ -32,7 +32,8 @@ jobs:
 
       - name: Run tests
         run: mvn verify
-
+      # if: always() ensures this step runs even if tests fail
+      # — critical for diagnostic output at the exact moment it's needed
       - name: Stop Spring Boot app
         run: mvn spring-boot:stop
         if: always()
