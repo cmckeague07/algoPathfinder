@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +17,16 @@ import algoPathfinder.Algorithms.AStar.*;
 import algoPathfinder.Algorithms.AStar;
 import algoPathfinder.Algorithms.BFS;
 import algoPathfinder.Algorithms.DFS;
+import algoPathfinder.Service.PathFindingResultService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Controller
 public class AlgoController {
+
+	@Autowired
+	private PathFindingResultService pathfindingResultService;
+
 	@GetMapping("/")
     public String Load(Model model) {
 		
@@ -59,11 +67,23 @@ public class AlgoController {
 			DFS dfs = new DFS();
 	        // Creating graph 
 			dfs.createGraph(results);
-			
-			
-			 // Traversing with DFS
+
+
+			// Capture execution time ← APF-006
+			long startTime = System.currentTimeMillis();
+			// Traversing with DFS
 			boolean hasPathDFS = dfs.hasPathDFS(0, x);
-			
+			long executionTime = System.currentTimeMillis() - startTime;
+
+
+			// Build path string ← APF-006
+			String pathTaken = dfs.pathList.stream()
+					.map(String::valueOf)
+					.collect(Collectors.joining(","));
+
+			// Save to H2 ← APF-006
+			pathfindingResultService.saveResult("DFS", 0, x, pathTaken, dfs.pathList.size(), executionTime, hasPathDFS);
+
 			redirectAttrs.addFlashAttribute("message", "" + "Path exists: " + hasPathDFS 
 			+ "\n Nodes visited: " + Arrays.toString(dfs.pathList.toArray()) );
 			
@@ -99,10 +119,21 @@ public class AlgoController {
 		BFS bfs = new BFS();
         // Creating graph 
 		bfs.createGraph(results);
-		
-		
-		 // Traversing with DFS
+
+
+		// Capture execution time ← APF-006
+		long startTime = System.currentTimeMillis();
+		// Traversing with DFS
 		boolean hasPathDFS = bfs.hasPathBFS(0, x);
+		long executionTime = System.currentTimeMillis() - startTime;
+		
+		// Build path string ← APF-006
+			String pathTaken = bfs.pathList.stream()
+					.map(String::valueOf)
+					.collect(Collectors.joining(","));
+
+		// Save to H2 ← APF-006
+		pathfindingResultService.saveResult("BFS", 0, x, pathTaken, bfs.pathList.size(), executionTime, hasPathDFS);
 		
 		redirectAttrs.addFlashAttribute("message", "" + "Path exists: " + hasPathDFS 
 		+ "\n Nodes visited: " + Arrays.toString(bfs.pathList.toArray()) );
@@ -163,8 +194,11 @@ public class AlgoController {
       	  double fcost = 10 + star.heuristic(0, 19, endNode.x, endNode.y);
       	  double fcostend = 10 + star.heuristic(endNode.x, endNode.y, endNode.x, endNode.y);
       	  AStar.Node start = new Node(0, 0, 19, 10, star.heuristic(0, 19, endNode.x, endNode.y), fcost, false); 
-  		  AStar.Node end = new Node(dest, endNode.x, endNode.y, 10, star.heuristic(endNode.x, endNode.y, endNode.x, endNode.y), fcostend, false); 
-  		  List<List<Node>> path = star.findPathAStar(start, end, resultsSorted);
+  		  AStar.Node end = new Node(dest, endNode.x, endNode.y, 10, star.heuristic(endNode.x, endNode.y, endNode.x, endNode.y), fcostend, false);
+			// Capture execution time ← APF-006
+			long startTime = System.currentTimeMillis();
+			List<List<Node>> path = star.findPathAStar(start, end, resultsSorted);
+			long executionTime = System.currentTimeMillis() - startTime;
   		  List<Integer> visitedNodes = new ArrayList<Integer>();
   		  for(Node node: path.get(0)) {
   			 visitedNodes.add(node.id);
@@ -176,7 +210,17 @@ public class AlgoController {
   			  }
   			 finalPath.add(node.id);
   		  }
-  		  
+			// Build path string ← APF-006
+			String pathTaken = finalPath.stream()
+					.map(String::valueOf)
+					.collect(Collectors.joining(","));
+
+			// Determine if path was found ← APF-006
+			boolean pathFound = !finalPath.isEmpty();
+
+			// Save to H2 ← APF-006
+			pathfindingResultService.saveResult("ASTAR", 0, dest, pathTaken, finalPath.size(), executionTime, pathFound);
+
   		  redirectAttrs.addFlashAttribute("message", "" + "Path exists: " + Arrays.toString(finalPath.toArray()));
   		  redirectAttrs.addFlashAttribute("messag2", "" + "\n Nodes visited: " + Arrays.toString(visitedNodes.toArray()));
   		  
